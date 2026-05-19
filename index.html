@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFP: Agro Product Technology - Derivative Applications</title>
+    <!-- Tailwind CSS for clean layout architecture -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Chart.js for smooth mathematical animations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- MathJax for rendering publication-quality LaTeX formulas -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col items-center p-4 md:p-8">
+
+    <main class="max-w-5xl w-full bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+        
+        <!-- Header Banner Section -->
+        <header class="bg-emerald-800 text-white p-6 md:p-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
+                <div>
+                    <span class="text-xs font-bold tracking-widest uppercase bg-emerald-700 px-3 py-1 rounded-full text-emerald-200">
+                        SFP: Agro Product Technology
+                    </span>
+                    <h1 class="text-2xl md:text-3xl font-extrabold mt-2">Oil Palm Yield Dynamics via Calculus</h1>
+                </div>
+                <div class="text-left md:text-right">
+                    <p class="text-xs text-emerald-200">Contextual Reference Dataset:</p>
+                    <a href="https://palmoilis.mpob.gov.my" target="_blank" class="text-sm font-semibold hover:underline text-white flex items-center gap-1">
+                        Malaysian Palm Oil Board (MPOB) Core Metrics ↗
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <div class="p-6 md:p-8 space-y-8">
+            
+            <!-- Context & Mathematical Modeling Docs -->
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-900 mb-2">The Bioscience Scenario</h2>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        Managing plantation yield trajectories is vital for process logistics in modern agro-industrial operations. The curve below illustrates the cumulative Fresh Fruit Bunch (FFB) yield of commercial <em>Elaeis guineensis</em> stands across a 25-year economic lifespan. By processing the <strong>first derivative \(f'(x)\)</strong>, processing managers predict shifting supply limits to tune extraction facility throughput precisely.
+                    </p>
+                </div>
+                <div class="space-y-3 bg-white p-4 rounded-lg border border-slate-100 shadow-xs">
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500">Mathematical Formulations</h3>
+                    <div class="text-sm space-y-2">
+                        <div class="p-2 bg-emerald-50 rounded">
+                            <span class="font-semibold block text-xs text-emerald-800">Cumulative Yield Function \(f(x)\):</span>
+                            $$f(x) = 320 \cdot e^{-8.5 \cdot e^{-0.18 \cdot x}}$$
+                        </div>
+                        <div class="p-2 bg-blue-50 rounded">
+                            <span class="font-semibold block text-xs text-blue-800">Production Rate Derivative \(f'(x)\):</span>
+                            $$f'(x) = f(x) \cdot (8.5 \cdot 0.18 \cdot e^{-0.18 \cdot x})$$
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Graph Interactivity Workspace -->
+            <section class="space-y-4">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                    <h2 class="text-xl font-bold text-slate-900">Interactive Kinetic Simulation</h2>
+                    <p class="text-xs text-slate-500 font-medium">💡 Click anywhere on the grid line plot to run a derivative analysis at that age point.</p>
+                </div>
+
+                <div class="relative w-full bg-slate-900 p-2 md:p-4 rounded-xl shadow-inner min-h-[320px] flex items-center justify-center">
+                    <canvas id="growthChart" class="w-full h-96"></canvas>
+                </div>
+            </section>
+
+            <!-- Real-Time Point Diagnostic Readout Dashboard -->
+            <section id="analysisPanel" class="bg-slate-900 text-white p-6 rounded-xl border border-slate-800 transition-all duration-300 shadow-md">
+                <div id="placeholderText" class="text-center py-6 text-slate-400 text-sm">
+                    <span class="inline-block animate-bounce mr-2">📍</span> Click on a data coordinates node above to display real-time calculus diagnostics.
+                </div>
+                
+                <div id="diagnosticContent" class="hidden space-y-6">
+                    <div class="border-b border-slate-800 pb-4 flex flex-wrap justify-between items-baseline gap-2">
+                        <h3 class="text-lg font-bold text-emerald-400">Biological Audit Window</h3>
+                        <span class="text-sm px-3 py-1 bg-slate-800 text-slate-300 font-mono rounded-md" id="readoutAge">Age: --</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 bg-slate-800/50 rounded-lg border border-slate-800">
+                            <span class="text-xs text-slate-400 font-semibold block uppercase tracking-wider">Cumulative Absolute Output</span>
+                            <div class="text-2xl font-black mt-1 text-white" id="readoutYield">-- <span class="text-xs font-normal text-slate-400">t/ha</span></div>
+                        </div>
+                        <div class="p-4 bg-slate-800/50 rounded-lg border border-slate-800">
+                            <span class="text-xs text-slate-400 font-semibold block uppercase tracking-wider">Current Speed of Growth \(f'(x)\)</span>
+                            <div class="text-2xl font-black mt-1 text-emerald-400" id="readoutRate">-- <span class="text-xs font-normal text-slate-400">t/ha/year</span></div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-emerald-950/40 border border-emerald-900/60 rounded-lg">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">Layman Explanatory Translation</h4>
+                        <p class="text-sm leading-relaxed text-slate-300" id="laymanExplanation">Select data point...</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="bg-slate-100 px-6 py-4 border-t border-slate-200 text-center text-xs text-slate-500">
+            Designed for SFP Coursework: Principles of Applied Calculus in Malaysian Agronomy Ecosystems.
+        </footer>
+    </main>
+
+    <script>
+        // Constants matching typical oil palm growth datasets (Gompertz Parameters)
+        const A = 320; 
+        const B = 8.5; 
+        const C = 0.18;
+
+        // Mathematical Functions
+        function calculateYield(x) {
+            return A * Math.exp(-B * Math.exp(-C * x));
+        }
+
+        function calculateDerivative(x) {
+            const fx = calculateYield(x);
+            return fx * (B * C * Math.exp(-C * x));
+        }
+
+        // Generate Data Points for the Chart Canvas (Years 0 through 25)
+        const years = Array.from({length: 51}, (_, i) => i * 0.5); // step size 0.5 for ultra-smooth rendering
+        const yieldData = years.map(x => calculateYield(x));
+
+        // Initialize Chart.js configuration instance
+        const ctx = document.getElementById('growthChart').getContext('2d');
+        const growthChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: 'Cumulative Fresh Fruit Bunch (FFB) Yield (t/ha)',
+                    data: yieldData,
+                    borderColor: '#10b981',
+                    borderWidth: 3,
+                    backgroundColor: 'rgba(16, 185, 129, 0.05)',
+                    fill: true,
+                    tension: 0.2,
+                    pointRadius: 0, // clean path view
+                    pointHoverRadius: 6,
+                    pointHitRadius: 15
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: { color: '#94a3b8', font: { family: 'ui-sans-serif', size: 12 } }
+                    },
+                    tooltip: { enabled: false } // custom dashboard handles display logic cleanly
+                },
+                scales: {
+                    x: {
+                        type: 'linear',
+                        title: { display: true, text: 'Palm Stand Age (Years)', color: '#94a3b8' },
+                        grid: { color: 'rgba(51, 65, 85, 0.3)' },
+                        ticks: { color: '#94a3b8' },
+                        min: 0,
+                        max: 25
+                    },
+                    y: {
+                        title: { display: true, text: 'Accumulated Yield (Metric Tonnes / Hectare)', color: '#94a3b8' },
+                        grid: { color: 'rgba(51, 65, 85, 0.3)' },
+                        ticks: { color: '#94a3b8' },
+                        min: 0,
+                        max: 350
+                    }
+                },
+                onClick: (e) => {
+                    // Extract closest valid analytical point from coordinate system intersect
+                    const points = growthChart.getElementsAtEventForMode(e, 'nearest', { intersect: false }, true);
+                    if (points.length > 0) {
+                        const index = points[0].index;
+                        const targetAge = growthChart.data.labels[index];
+                        processDiagnostic(targetAge);
+                    }
+                }
+            }
+        });
+
+        // Compute and translate clinical calculus data into a clean interpretation frame
+        function processDiagnostic(age) {
+            const currentYield = calculateYield(age);
+            const currentRate = calculateDerivative(age);
+
+            // Interface Updates
+            document.getElementById('placeholderText').classList.add('hidden');
+            document.getElementById('diagnosticContent').classList.remove('hidden');
+
+            document.getElementById('readoutAge').innerText = `Palm Age: ${age.toFixed(1)} Years`;
+            document.getElementById('readoutYield').innerHTML = `${currentYield.toFixed(2)} <span class="text-xs font-normal text-slate-400">t/ha</span>`;
+            document.getElementById('readoutRate').innerHTML = `+${currentRate.toFixed(2)} <span class="text-xs font-normal text-slate-400">t/ha/year</span>`;
+
+            // Layman Logic Engine Builder
+            let logicText = "";
+            if (age < 3) {
+                logicText = `At year ${age.toFixed(1)}, the sapling is adapting to field soil conditions. The marginal productivity derivative is practically zero (${currentRate.toFixed(2)} t/ha/year), proving the plant is in an immature vegetative lag phase focusing purely on root and leaf structural formation rather than generating harvestable fruit.`;
+            } else if (age >= 3 && age < 9) {
+                logicText = `At year ${age.toFixed(1)}, the stand has entered its peak physiological velocity. The derivative is exceptionally high at +${currentRate.toFixed(2)} t/ha/year. This tells an agroproduct manager that output acceleration is climbing rapidly every month; harvest logistics and oil mills must prepare for surging volumes.`;
+            } else if (age >= 9 && age < 16) {
+                logicText = `At year ${age.toFixed(1)}, the inflection point is past. While cumulative yields continue to climb up to ${currentYield.toFixed(2)} t/ha, the derivative has downshifted to +${currentRate.toFixed(2)} t/ha/year. The biological growth rate is slowing down as the tree canopy closes completely, creating structural shadows that level off new output spikes.`;
+            } else {
+                logicText = `At year ${age.toFixed(1)}, the plantation has reached its senior production plateau. The derivative is tapering to a bare minimum (${currentRate.toFixed(2)} t/ha/year). The block is generating stable, high yields, but its active growth expansion phase has ceased entirely, hinting that replant cycling schedules should be planned within the decade.`;
+            }
+            
+            document.getElementById('laymanExplanation').innerText = logicText;
+        }
+    </script>
+</body>
+</html>
